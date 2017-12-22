@@ -34,27 +34,8 @@ def validNumber(number):
     pass
 
 
-'''
-def serializeMessages(scriptOutput):
-    splitOutput = re.split(r'[;,\s]\s*', scriptOutput)
-    serializedData = []
-    i = 0
-    while (i < len(splitOutput)):
-        serializedData.append(splitOutput[i:i+6])
-        i +=6
-    serializedData.pop()
-    return serializedData
-
-
-def getMessages():
-    cmd = '''osascript getMessages.applescript'''
-    result = subprocess.check_output(cmd, shell=True)
-    print serializeMessages(result)
-'''
-
-
 
 
 if __name__ == '__main__':
 
-    print sendText()
+    print sendText('16266644912','hello')
