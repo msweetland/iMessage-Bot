@@ -1,8 +1,9 @@
 import os
 import subprocess
+import re
 
 # send text, bool for response
-def sendText(number, message):
+def sendText(number=None, message=None):
     try:
         cmd = '''osascript sendMessage.applescript {} "{}"'''.format(number,message)
         result = subprocess.check_output(cmd, shell=True)
@@ -16,7 +17,7 @@ def sendText(number, message):
 
 
 # check contacts if name is present - return tuple (bool, num)
-def validContact(name):
+def validContact(name=None):
     try:
         cmd = '''osascript searchContacts.applescript "{}"'''.format(name)
         result = subprocess.check_output(cmd, shell=True)
@@ -28,16 +29,32 @@ def validContact(name):
     except:
         return (False, None)
 
+
 def validNumber(number):
     pass
 
-def imessageHandler():
-    pass
 
+'''
+def serializeMessages(scriptOutput):
+    splitOutput = re.split(r'[;,\s]\s*', scriptOutput)
+    serializedData = []
+    i = 0
+    while (i < len(splitOutput)):
+        serializedData.append(splitOutput[i:i+6])
+        i +=6
+    serializedData.pop()
+    return serializedData
+
+
+def getMessages():
+    cmd = '''osascript getMessages.applescript'''
+    result = subprocess.check_output(cmd, shell=True)
+    print serializeMessages(result)
+'''
 
 
 
 
 if __name__ == '__main__':
 
-    print sendText('NUMBER','hello')
+    print sendText()
