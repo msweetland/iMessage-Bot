@@ -1,6 +1,9 @@
 import os
 import subprocess
 import re
+import ast
+import time
+from iMessageBotServer import RedisQueue
 
 # send text, bool for response
 def sendText(number=None, message=None):
@@ -29,13 +32,32 @@ def validContact(name=None):
     except:
         return (False, None)
 
-
 def validNumber(number):
     pass
 
 
 
 
-if __name__ == '__main__':
+def main():
+    q = RedisQueue('iMessageBot')
 
-    print sendText('16266644912','hello')
+    x = 0
+    while (True):
+        time.sleep(1)
+        print x, q.size()
+        x += 1
+        if not q.empty():
+            time.sleep(1)
+            m = q.pop()
+            m = ast.literal_eval(m)
+            number = m['from'].split('+')[1]
+            sendText(number,'bot response')
+
+
+
+
+
+
+if __name__ == '__main__':
+    main()
+    #print sendText('16266644912','hello')
