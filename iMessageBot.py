@@ -50,6 +50,7 @@ def main():
             time.sleep(1)
             m = q.pop()
             m = ast.literal_eval(m)
+            print m['message']
             number = m['from'].split('+')[1]
             sendText(number,'bot response')
 
