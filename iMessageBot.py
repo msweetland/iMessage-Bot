@@ -61,4 +61,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-    #print sendText('16266644912','hello')
